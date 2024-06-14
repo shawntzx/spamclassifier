@@ -2,9 +2,10 @@ trigger:
 - main
 
 variables:
-  dockerHubNamespace: your-docker-hub-namespace
-  imageName: your-image-name
-  azureServiceConnection: your-azure-service-connection
+  dockerHubNamespace: shawntzx
+  imageName: spamclassifier_app
+  azureServiceConnection: AzureAppServiceConnection
+  appServiceName: my-spamclassifier-app  # Replace with your actual App Service name
 
 stages:
 - stage: Build
@@ -31,9 +32,9 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: AzureWebApp@1
+    - task: AzureWebAppContainer@1
       inputs:
         azureSubscription: $(azureServiceConnection)
-        appName: your-app-service-name
+        appName: $(appServiceName)
         imageName: '$(dockerHubNamespace)/$(imageName):$(Build.BuildId)'
         startupCommand: ''
