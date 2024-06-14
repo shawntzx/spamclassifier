@@ -7,13 +7,18 @@ variables:
   azureServiceConnection: AzureAppServiceConnection
   appServiceName: my-spamclassifier-app  # Replace with your actual App Service name
 
+pool:
+  name: Default
+  demands:
+    - agent.name -equals DESKTOP-6I5OS4B # Replace with your agent name
+
 stages:
 - stage: Build
   jobs:
   - job: BuildAndPush
     displayName: Build and Push Docker Image
     pool:
-      vmImage: 'ubuntu-latest'
+      name: Default
     steps:
     - task: Docker@2
       inputs:
@@ -30,7 +35,7 @@ stages:
   - job: DeployToAzure
     displayName: Deploy to Azure App Service
     pool:
-      vmImage: 'ubuntu-latest'
+      name: Default
     steps:
     - task: AzureWebAppContainer@1
       inputs:
