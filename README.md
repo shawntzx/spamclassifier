@@ -4,7 +4,7 @@ This is the first video of MLOps video series on [YouTube](https://www.youtube.c
 In this specific video, you will learn how to: 
 1. Train a Machine Learning Model.  
 2. Create a Flask application to interact with your model. 
-3. hahaha
+3. lol
 
 
 
